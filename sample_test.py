@@ -16,12 +16,11 @@ class TestMy:
     def test_01hello_world(self):
         print("Try to search in google")
         self.driver.find_element_by_name("q").send_keys("Moscow Stock Exchange Repository\n")
-
-    def test_02hello_world(self):
         print("Check results stats appeared")
         self.driver.find_element_by_id("resultStats")
-        assert WebDriverWait(self.driver, 10).until(
-            expected_conditions.presence_of_element_located((By.ID, "resultStats")).is_displayed())
+        element = WebDriverWait(self.driver, 10).until(
+            expected_conditions.presence_of_element_located((By.ID, "resultStats")))
+        assert element.is_displayed()
 
     def teardown_method(self):
         self.driver.close()
